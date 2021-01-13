@@ -6,5 +6,7 @@ steps:
   entrypoint: 'npm'
   args: ['test']
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '--tag=gcr.io/$PROJECT_ID/hello_npm', '.']
+  args: ['build', '--tag=gcr.io//hello_npm', '.']
+- name: 'gcr.io/cloud-builders/gcloud'
+  args: ['run', 'deploy', 'myservice3', '--image', 'gcr.io/$PROJECT_ID/hello_npm', '--region', 'us-central1', '--platform', 'managed', '--allow-unauthenticated']
 images: ['gcr.io/$PROJECT_ID/hello_npm']
